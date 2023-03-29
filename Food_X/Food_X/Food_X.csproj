@@ -90,6 +90,18 @@
     <Compile Include="FSanPham.Designer.cs">
       <DependentUpon>FSanPham.cs</DependentUpon>
     </Compile>
+    <Compile Include="FThietLapAdmin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FThietLapAdmin.Designer.cs">
+      <DependentUpon>FThietLapAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FThietLapNV.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FThietLapNV.Designer.cs">
+      <DependentUpon>FThietLapNV.cs</DependentUpon>
+    </Compile>
     <Compile Include="FThongKe.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -136,6 +148,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FSanPham.resx">
       <DependentUpon>FSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FThietLapAdmin.resx">
+      <DependentUpon>FThietLapAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FThietLapNV.resx">
+      <DependentUpon>FThietLapNV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FThongKe.resx">
       <DependentUpon>FThongKe.cs</DependentUpon>

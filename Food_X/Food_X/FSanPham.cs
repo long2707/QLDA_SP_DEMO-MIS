@@ -24,6 +24,8 @@ namespace Food_X
         {
             dataNhapKho.DataSource = kn.xuLy("EXEC GETSANPHAM N'"+txtTImKiem.Text+"'");
             dataNhapKho.AllowUserToAddRows = false;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
@@ -64,7 +66,10 @@ namespace Food_X
             txtGiaNhap.Text = Convert.ToString(dataNhapKho.Rows[i].Cells[4].Value);
             txtGiaBan.Text = Convert.ToString(dataNhapKho.Rows[i].Cells[3].Value);
             cbxSP.Enabled = false;
-             cbxDanhMuc.Enabled = false;
+            cbxDanhMuc.Enabled = false;
+            btnSua.Enabled = true;
+            btnXoa.Enabled = true;
+           
             
         }
 

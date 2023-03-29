@@ -1,18 +1,16 @@
 ﻿USE QLDA_DATA
-
+GO
   /*kiem tra user*/
 CREATE PROC  CHECK_USER
 @username varchar(20),
 @password varchar(20)
 AS
-	SELECT a.TenNV, c.TenCV, a.MaNV
+	SELECT a.TenNV, c.role, a.MaNV
 	FROM NHANVIEN a INNER JOIN USERNV b ON a.MaNV = b.MaNV
 					INNER JOIN CHUCVU c  ON a.MaCV= c.MaCV
 	WHERE b.usename= @username AND b.password= @password
-
-EXEC CHECK_USER 'admin', '1'
-DROP PROC CHECK_USER
-
+	
+GO
   /*tao hoa don*/
 CREATE PROC TAOHOADON
 @maHD uniqueidentifier,
@@ -23,7 +21,7 @@ CREATE PROC TAOHOADON
 AS
 	INSERT INTO CHITIETHOADON SELECT @maHD, @maSP, @soluong, @DonGia, @ThanhTien
 	UPDATE SANPHAM SET SoLuong= SoLuong- @soluong WHERE CONVERT(nvarchar(100), MaSP)= @maSP
-
+GO
 	  /*cap nhat hoa don*/
 CREATE PROC UPDATEHOADON
 @maHD uniqueidentifier,
@@ -38,7 +36,7 @@ AS
 		BEGIN
 			UPDATE SANPHAM SET SoLuong= SoLuong- @soluong WHERE CONVERT(nvarchar(100), MaSP)= @maSP
 		END
-
+GO
   /*Xóa hoa don*/
 CREATE PROC DELETEHOADON
 @maHD uniqueidentifier,
@@ -50,13 +48,13 @@ AS
 	DELETE CHITIETHOADON WHERE MaHD=@maHD AND MaSP= @maSP
 
 			UPDATE SANPHAM SET SoLuong= SoLuong + @soluong WHERE CONVERT(nvarchar(100), MaSP)= @maSP
-
+GO
   /*huy tao hoa don*/		
 CREATE PROC HUYTAOHOADON
 @maHD uniqueidentifier
 AS
 	DELETE CHITIETHOADON WHERE MaHD=@maHD
-
+GO
 		
 		  /*tao hoa don*/
 CREATE PROC HOADONBAN
@@ -80,8 +78,7 @@ AS
 			FROM CHITIETHOADON INNER JOIN #tmp ON CHITIETHOADON.MaHD = #tmp.MaHD
 							 INNER JOIN SANPHAM ON CHITIETHOADON.MaSP = SANPHAM.MaSP
 		END
-		DROP PROC HOADONBAN
-		EXEC HOADONBAN '2023-03-27'
+GO
 
 /*lay thong tin san pham */
 CREATE PROC GETSANPHAM
@@ -96,7 +93,7 @@ AS
 			SELECT SANPHAM.MaSP, SANPHAM.TenSP, DANHMUC.TenDM, SANPHAM.GiaBan, SANPHAM.GiaNhap, SANPHAM.SoLuong FROM SANPHAM LEFT JOIN DANHMUC ON SANPHAM.MaDM = DANHMUC.MaDM
 		END
 
-
+GO
 
 /* xoa san pham khoi kho */
 CREATE PROC XOASANPHAM
@@ -108,7 +105,7 @@ AS
    ALTER TABLE CHITIETHOADON
    ADD CONSTRAINT fk_sp_chitiet FOREIGN KEY (MaSP) REFERENCES SANPHAM(MaSP)
 
-
+   GO
 
 /*nhap hang */
 CREATE PROC NHAPKHOSANPHAM
@@ -120,7 +117,7 @@ CREATE PROC NHAPKHOSANPHAM
 @gianhap numeric(19,4),
 @giaban numeric(19,4)
 AS
-	DECLARE @maspi varchar(100)
+	DECLARE @maspi varchar(100), @sql varchar(300)
    IF CONVERT(varchar(100), @masp) <> ''
 		BEGIN
 		   INSERT INTO CHITIETPHIEUNHAPKHO SELECT @maphieu, @maSP, @soluong, @gianhap, (@gianhap*@soluong)
@@ -128,13 +125,11 @@ AS
 		END
 	ELSE
 		BEGIN 
-			INSERT INTO SANPHAM(TenSP, MaDM, SoLuong, GiaNhap, GiaBan) VALUES (@tensp, @madm, @soluong, @gianhap, @giaban)
+			INSERT INTO SANPHAM(TenSP, MaDM, SoLuong, GiaNhap, GiaBan) VALUES (N''+@tensp+'', @madm , @soluong,@gianhap, @giaban)
 			SELECT @maspi = MaSP FROM SANPHAM WHERE TenSP = @tensp
 			INSERT INTO CHITIETPHIEUNHAPKHO SELECT @maphieu, @maspi, @soluong, @gianhap,(@gianhap*@soluong)
 		END
-
-		DROP PROC NHAPKHOSANPHAM
-SELECT*FROM PHIEUNHAPKHO
+GO
 		  /*cap nhat phieu nhap kho*/
 CREATE PROC UPDATENHAPKHO
 @maphieu uniqueidentifier,
@@ -151,20 +146,25 @@ AS
 	UPDATE SANPHAM SET SoLuong= (SoLuong - @solgsptr) + @soluong, TenSP= @tensp, GiaNhap= @gianhap, GiaBan= @giaban WHERE MaSP= @masp
 
 
+	GO
 
-  /*xuat phieu nhap kho*/
+ /*xuat phieu nhap kho*/
 CREATE PROC XUATTHONGTINPHIEUNHAP
 @maphieu uniqueidentifier
 AS
-   SELECT CHITIETPHIEUNHAPKHO.MaPhieuNhap, SANPHAM.MaDM, SANPHAM.TenSP, CHITIETPHIEUNHAPKHO.SoLuong,SANPHAM.GiaNhap, SANPHAM.GiaBan, PHIEUNHAPKHO.NgayLapHD  
+   SELECT CHITIETPHIEUNHAPKHO.MaPhieuNhap, SANPHAM.MaDM, SANPHAM.TenSP, CHITIETPHIEUNHAPKHO.SoLuong,SANPHAM.GiaNhap, SANPHAM.GiaBan, PHIEUNHAPKHO.NgayLapHD, PHIEUNHAPKHO.MaNCC  
    INTO #tmpt  
-   FROM CHITIETPHIEUNHAPKHO LEFT JOIN SANPHAM ON CHITIETPHIEUNHAPKHO.MaSP= SANPHAM.MaSP 
-						    LEFT JOIN PHIEUNHAPKHO ON CHITIETPHIEUNHAPKHO.MaPhieuNhap= PHIEUNHAPKHO.MaPhieuNhap 
+   FROM CHITIETPHIEUNHAPKHO INNER JOIN SANPHAM ON CHITIETPHIEUNHAPKHO.MaSP= SANPHAM.MaSP 
+						    INNER JOIN PHIEUNHAPKHO ON CHITIETPHIEUNHAPKHO.MaPhieuNhap= PHIEUNHAPKHO.MaPhieuNhap 
    WHERE CHITIETPHIEUNHAPKHO.MaPhieuNhap=  @maphieu
 
-   SELECT #tmpt.MaPhieuNhap, #tmpt.TenSP, DANHMUC.TenDM, #tmpt.SoLuong, #tmpt.GiaNhap, #tmpt.GiaBan, #tmpt.NgayLapHD
-   FROM #tmpt INNER JOIN DANHMUC ON #tmpt.MaDM = DANHMUC.MaDM WHERE #tmpt.MaPhieuNhap=@maphieu
+   SELECT #tmpt.MaPhieuNhap, #tmpt.MaDM, #tmpt.TenSP, #tmpt.SoLuong,#tmpt.GiaNhap, #tmpt.GiaBan, #tmpt.NgayLapHD, NHACUNGCAP.TenNCC
+   INTO #tmpt2 FROM #tmpt INNER JOIN NHACUNGCAP ON NHACUNGCAP.MaNCC= #tmpt.MaNCC
 
+   SELECT #tmpt2.MaPhieuNhap, #tmpt2.TenSP,  #tmpt2.TenNCC, DANHMUC.TenDM, #tmpt2.SoLuong, #tmpt2.GiaNhap, #tmpt2.GiaBan, #tmpt2.NgayLapHD
+   FROM #tmpt2 INNER JOIN DANHMUC ON #tmpt2.MaDM = DANHMUC.MaDM WHERE #tmpt2.MaPhieuNhap=@maphieu
+
+   GO
    /*Xóa  phieu nhap kho*/
 CREATE PROC DELETEPHIEUNHAPKHO
 @maphieu uniqueidentifier,
@@ -176,7 +176,7 @@ AS
 	DELETE CHITIETPHIEUNHAPKHO  WHERE MaPhieuNhap=@maphieu AND MaSP= @maSP
 	UPDATE SANPHAM SET SoLuong= SoLuong + @soluong -@solg WHERE CONVERT(nvarchar(100), MaSP)= @maSP
 
-
+GO
 	
 /*Xóa danh mục*/
 CREATE PROC XOADANHMUC
@@ -188,3 +188,33 @@ AS
 	UPDATE SANPHAM SET MaDM=1 WHERE MaDM = @madm
 	ALTER TABLE SANPHAM 
 	ADD CONSTRAINT sanpham_danhmuc FOREIGN KEY (MaDM) REFERENCES DANHMUC(MaDM)
+
+
+CREATE PROC ADDNHANVIEN
+@macv int,
+@tenv Nvarchar(50), 
+@sdt char(10),
+@diachi nvarchar(225),
+@username varchar(20)
+AS
+	DECLARE @manv uniqueidentifier
+   INSERT INTO NHANVIEN(MaCV, TenNV, Sdt,DiaChi) VALUES(@macv, N''+@tenv+'', @sdt, N''+@diachi+'')
+   SELECT @manv =MaNV FROM NHANVIEN WHERE TenNV = @tenv AND Sdt = @sdt
+   INSERT INTO USERNV(MaNV, usename, password) VALUES (@manv, @username, 1)
+
+
+
+CREATE PROC DELETENHANVIEN
+@manv uniqueidentifier
+AS
+
+	ALTER TABLE USERNV
+	DROP CONSTRAINT fk_nhanvien_user
+
+	DELETE NHANVIEN WHERE MaNV= @manv
+
+	DELETE USERNV  WHERE MaNV = @manv
+
+	ALTER TABLE USERNV
+	ADD CONSTRAINT fk_nhanvien_user FOREIGN KEY (MaNV) REFERENCES NHANVIEN(MaNV)
+

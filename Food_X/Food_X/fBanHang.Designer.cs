@@ -40,6 +40,7 @@
             this.cbxSP = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.txtSolg = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.txtDonGia = new System.Windows.Forms.TextBox();
@@ -59,7 +60,6 @@
             this.labTongTien = new System.Windows.Forms.Label();
             this.btnTimKH = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtSolg = new System.Windows.Forms.TextBox();
             this.lbTongTien = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -149,6 +149,7 @@
             this.textSDT.Name = "textSDT";
             this.textSDT.Size = new System.Drawing.Size(207, 31);
             this.textSDT.TabIndex = 0;
+//            this.textSDT.TextChanged += new System.EventHandler(this.textSDT_TextChanged);
             // 
             // panel3
             // 
@@ -188,6 +189,15 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(474, 60);
             this.panel4.TabIndex = 5;
+            // 
+            // txtSolg
+            // 
+            this.txtSolg.Location = new System.Drawing.Point(147, 11);
+            this.txtSolg.Multiline = true;
+            this.txtSolg.Name = "txtSolg";
+            this.txtSolg.Size = new System.Drawing.Size(324, 31);
+            this.txtSolg.TabIndex = 3;
+            this.txtSolg.TextChanged += new System.EventHandler(this.txtSolg_TextChanged);
             // 
             // label4
             // 
@@ -371,15 +381,6 @@
             this.label9.Size = new System.Drawing.Size(295, 17);
             this.label9.TabIndex = 18;
             this.label9.Text = "(Tìm kiếm theo số điện thoại của khách hàng)";
-            // 
-            // txtSolg
-            // 
-            this.txtSolg.Location = new System.Drawing.Point(147, 11);
-            this.txtSolg.Multiline = true;
-            this.txtSolg.Name = "txtSolg";
-            this.txtSolg.Size = new System.Drawing.Size(324, 31);
-            this.txtSolg.TabIndex = 3;
-            this.txtSolg.TextChanged += new System.EventHandler(this.txtSolg_TextChanged);
             // 
             // lbTongTien
             // 

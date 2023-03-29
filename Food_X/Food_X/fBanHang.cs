@@ -49,6 +49,13 @@ namespace Food_X
             cbxSP.DisplayMember = "TenSP";
             cbxSP.DataSource = data.xuLy("SELECT MaSP,TenSP FROM SANPHAM");
             resetHang();
+            txtThanhTien.Enabled= false;
+            button1.Enabled= false;
+            button2.Enabled= false;
+            button5.Enabled= false;
+            button4.Enabled= false;
+            textNamKH.Enabled= false;
+           
         }
         
         private void btnTimKH_Click(object sender, EventArgs e)
@@ -69,6 +76,7 @@ namespace Food_X
                 MaKH = dt.Rows[0]["MaKH"].ToString();
                  
             }
+            
         }
         #region loaddataview
         private void LoadDataGridView()
@@ -90,7 +98,8 @@ namespace Food_X
             DataTable dt = data.xuLy(sql2);
             if (dt.Rows.Count > 0)
             {
-                lbTongTien.Text = dt.Rows[0]["TongTien"].ToString();
+                
+                lbTongTien.Text = String.Format("{ 0:0,0 vnđ}", dt.Rows[0]["TongTien"].ToString()); ;
             }
         }
 
@@ -111,14 +120,26 @@ namespace Food_X
         private void btnThem_Click(object sender, EventArgs e)
         {
             string sql = "SELECT MaHD FROM HOADON WHERE CONVERT(varchar(100), MaHD) = '" + maHD + "'";
-            if (Convert.ToInt32(txtSolg.Text) <= 0)
+            try
             {
-                MessageBox.Show("Nhập số lượng sản phẩm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+                if (Convert.ToInt32(txtSolg.Text) <= 0)
+                {
+                    MessageBox.Show("Nhập số lượng sản phẩm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (textSDT.Text.Length == 0)
+                {
+                    MessageBox.Show("Nhập số điện thoại khách hàng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (cbxSP.Text.Length == 0)
+                {
+                    MessageBox.Show("Chọn sản phẩm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-            
-   
+
+
                 if (!Helper.CheckKey(sql))
                 {
                     data.xuLy("INSERT INTO HOADON(MaKH, MaNV, NgayLapHD) VALUES('" + MaKH + "' , '" + Manv + "', GETDATE())");
@@ -127,10 +148,15 @@ namespace Food_X
                 }
                 DataTable dt = data.xuLy("SELECT MaHD FROM HOADON WHERE CONVERT(varchar(100), MaKH)= '" + MaKH + "' AND CONVERT(varchar(100), MaNV)= '" + Manv + "' ORDER BY NgayLapHD DESC");
                 maHD = dt.Rows[0]["MaHD"].ToString();
-            data.xuLy("EXEC TAOHOADON '"+maHD+"', '"+cbxSP.SelectedValue+ "', "+Convert.ToInt32(txtSolg.Text) + ",  " + Convert.ToDouble(txtDonGia.Text) + ", "+Convert.ToDouble(txtThanhTien.Text)+"");
-            //  data.xuLy("INSERT INTO CHITIETHOADON(MaHD, MaSP, SoLuong, DonGia, ThanhTien) VALUES('"+maHD+"', '"+cbxSP.SelectedValue+"', "+numSolg.Value+", "+Convert.ToDouble(txtDonGia.Text)+", "+Convert.ToDouble(txtThanhTien.Text)+")");
-            LoadDataGridView();
-            resetHang();
+                data.xuLy("EXEC TAOHOADON '" + maHD + "', '" + cbxSP.SelectedValue + "', " + Convert.ToInt32(txtSolg.Text) + ",  " + Convert.ToDouble(txtDonGia.Text) + ", " + Convert.ToDouble(txtThanhTien.Text) + "");
+                //  data.xuLy("INSERT INTO CHITIETHOADON(MaHD, MaSP, SoLuong, DonGia, ThanhTien) VALUES('"+maHD+"', '"+cbxSP.SelectedValue+"', "+numSolg.Value+", "+Convert.ToDouble(txtDonGia.Text)+", "+Convert.ToDouble(txtThanhTien.Text)+")");
+                LoadDataGridView();
+                resetHang();
+            }
+            catch
+            {
+                MessageBox.Show("Hệ thống đang lỗi\nVui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
 
         }
@@ -170,9 +196,20 @@ namespace Food_X
                 MessageBox.Show("Nhập số lượng sản phẩm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-          //  data.xuLy("UPDATE CHITIETHOADON SET SoLuong=2 , ThanhTien=13333 WHERE MaHD='6EC89289-8296-4EDE-8B23-BDAB4E9F2000' AND MaSP= '366F7708-29D9-4947-B7A4-50C5EFD8E059'");
+            if (textSDT.Text.Length == 0)
+            {
+                MessageBox.Show("Nhập số điện thoại khách hàng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (cbxSP.Text.Length == 0)
+            {
+                MessageBox.Show("Chọn sản phẩm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
+            //  data.xuLy("UPDATE CHITIETHOADON SET SoLuong=2 , ThanhTien=13333 WHERE MaHD='6EC89289-8296-4EDE-8B23-BDAB4E9F2000' AND MaSP= '366F7708-29D9-4947-B7A4-50C5EFD8E059'");
             data.xuLy("EXEC UPDATEHOADON @maHD='"+maHD+"', @maSP= '"+cbxSP.SelectedValue+"', @soluong="+Convert.ToInt32(txtSolg.Text)+", @ThanhTien="+Convert.ToDecimal(txtThanhTien.Text)+"");
-       LoadDataGridView();
+            LoadDataGridView();
             resetHang();
             cbxSP.Enabled = true;
 
@@ -189,6 +226,11 @@ namespace Food_X
             cbxSP.Enabled = false;
             txtDonGia.Enabled = false;
             txtThanhTien.Enabled = false;
+            button1.Enabled = true;
+            button2.Enabled = true;
+            button4.Enabled = true;
+            button5.Enabled = true;
+            btnThem.Enabled = false;
         }
 
         private void txtSolg_TextChanged(object sender, EventArgs e)
@@ -211,7 +253,7 @@ namespace Food_X
             if(MessageBox.Show("Bạn có muốn xóa không ?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
 
-            data.xuLy("EXEC DELETEHOADON @maHD='" + maHD + "', @maSP= '" + cbxSP.SelectedValue + "', @soluong=" + Convert.ToInt32(txtSolg.Text) + "");
+                data.xuLy("EXEC DELETEHOADON @maHD='" + maHD + "', @maSP= '" + cbxSP.SelectedValue + "', @soluong=" + Convert.ToInt32(txtSolg.Text) + "");
                 LoadDataGridView();
                 resetHang();
                 cbxSP.Enabled = true;
@@ -229,6 +271,10 @@ namespace Food_X
                 MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadDataGridView();
                 resetHang();
+                button1.Enabled = false;
+                button2.Enabled = false;
+                button5.Enabled = false;
+                button4.Enabled = false;
             }
         }
 
@@ -240,6 +286,35 @@ namespace Food_X
             dgBanHang.DataSource = null;
             lbTongTien.Text = "0";
             MessageBox.Show("Xuất hóa đơn thành công", "Thông báp", MessageBoxButtons.OK, MessageBoxIcon.Information );
+            cbxSP.Enabled = true;
+            txtDonGia.Enabled = true;
+            txtSolg.Enabled = true;
+            txtThanhTien.Enabled = false;
+            button1.Enabled = true;
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button5.Enabled = false;
+            button4.Enabled = false;
         }
+
+        //private void textSDT_TextChanged(object sender, EventArgs e)
+        //{
+        //    string sql = "SELECT MaKH, TenKH FROM KHACHHANG WHERE Sdt LIKE '%" + textSDT.Text + "%'";
+
+        //    if (!Helper.CheckKey(sql))
+        //    {
+        //        MessageBox.Show("Khách hàng chưa có trong hệ thống\n Nhập thêm tên khách hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        FormKhachHang formKhachHang = new FormKhachHang(textSDT.Text);
+        //        formKhachHang.ShowDialog();
+
+        //    }
+        //    else
+        //    {
+        //        DataTable dt = data.xuLy("SELECT MaKH, TenKH FROM KHACHHANG WHERE Sdt = '" + textSDT.Text + "'");
+        //        textNamKH.Text = dt.Rows[0]["TenKH"].ToString();
+        //        MaKH = dt.Rows[0]["MaKH"].ToString();
+
+        //    }
+        //}
     }
 }

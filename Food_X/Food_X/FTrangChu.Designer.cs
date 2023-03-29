@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.btnThietLap = new System.Windows.Forms.Button();
             this.btnNhapHang = new System.Windows.Forms.Button();
             this.btnDangXuat = new System.Windows.Forms.Button();
@@ -43,7 +44,6 @@
             this.labelDate = new System.Windows.Forms.Label();
             this.lbViewbtn = new System.Windows.Forms.Label();
             this.lbTen = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -66,6 +66,13 @@
             this.panel1.Size = new System.Drawing.Size(254, 772);
             this.panel1.TabIndex = 0;
             // 
+            // panel4
+            // 
+            this.panel4.Location = new System.Drawing.Point(0, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(254, 74);
+            this.panel4.TabIndex = 8;
+            // 
             // btnThietLap
             // 
             this.btnThietLap.FlatAppearance.BorderSize = 0;
@@ -79,6 +86,7 @@
             this.btnThietLap.Text = "Thiết Lập";
             this.btnThietLap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnThietLap.UseVisualStyleBackColor = true;
+            this.btnThietLap.Click += new System.EventHandler(this.btnThietLap_Click);
             // 
             // btnNhapHang
             // 
@@ -181,7 +189,6 @@
             this.btnBanHang.Size = new System.Drawing.Size(246, 52);
             this.btnBanHang.TabIndex = 0;
             this.btnBanHang.Text = "Bán Hàng";
-            this.btnBanHang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBanHang.UseVisualStyleBackColor = true;
             this.btnBanHang.Click += new System.EventHandler(this.btnBanHang_Click);
             // 
@@ -237,13 +244,6 @@
             this.lbTen.Name = "lbTen";
             this.lbTen.Size = new System.Drawing.Size(0, 16);
             this.lbTen.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.Location = new System.Drawing.Point(0, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(254, 74);
-            this.panel4.TabIndex = 8;
             // 
             // FTrangChu
             // 

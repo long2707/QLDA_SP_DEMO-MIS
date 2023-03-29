@@ -18,3 +18,5 @@ D:\Tài Liệu HVNH\HTTTQL\QLDA\Food_X\Food_X\obj\Debug\Food_X.FSanPham.resource
 D:\Tài Liệu HVNH\HTTTQL\QLDA\Food_X\Food_X\obj\Debug\Food_X.FDmSanPham.resources
 D:\Tài Liệu HVNH\HTTTQL\QLDA\Food_X\Food_X\obj\Debug\Food_X.FThongKe.resources
 D:\Tài Liệu HVNH\HTTTQL\QLDA\Food_X\Food_X\obj\Debug\Food_X.FormKhachHang.resources
+D:\Tài Liệu HVNH\HTTTQL\QLDA\Food_X\Food_X\obj\Debug\Food_X.FThietLapAdmin.resources
+D:\Tài Liệu HVNH\HTTTQL\QLDA\Food_X\Food_X\obj\Debug\Food_X.FThietLapNV.resources

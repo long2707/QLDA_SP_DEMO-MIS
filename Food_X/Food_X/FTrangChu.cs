@@ -120,5 +120,24 @@ namespace Food_X
         {
             Application.Exit();
         }
+
+        private void btnThietLap_Click(object sender, EventArgs e)
+        {
+            if(quyen == "admin")
+            {
+                lbViewbtn.Text= btnThietLap.Text;
+                FThietLapAdmin fThietLap = new FThietLapAdmin();
+                panelShow.Controls.Clear();
+                panelShow.Controls.Add(fThietLap);
+
+            }
+            else
+            {
+                lbViewbtn.Text = btnThietLap.Text;
+                FThietLapNV fThietLap = new FThietLapNV(MaNv);
+                panelShow.Controls.Clear();
+                panelShow.Controls.Add(fThietLap);
+            }
+        }
     }
 }

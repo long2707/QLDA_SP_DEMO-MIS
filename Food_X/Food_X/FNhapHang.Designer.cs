@@ -49,6 +49,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dataNhapKho = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.cbxNhaCungCap = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -57,10 +60,12 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataNhapKho)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel8);
             this.panel1.Controls.Add(this.btnXoa);
             this.panel1.Controls.Add(this.btnSua);
             this.panel1.Controls.Add(this.btnThem);
@@ -76,7 +81,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(384, 377);
+            this.btnXoa.Location = new System.Drawing.Point(384, 457);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(142, 47);
             this.btnXoa.TabIndex = 12;
@@ -86,9 +91,9 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(202, 377);
+            this.btnSua.Location = new System.Drawing.Point(198, 457);
             this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(134, 47);
+            this.btnSua.Size = new System.Drawing.Size(144, 47);
             this.btnSua.TabIndex = 11;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
@@ -96,7 +101,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(6, 377);
+            this.btnThem.Location = new System.Drawing.Point(6, 457);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(150, 47);
             this.btnThem.TabIndex = 10;
@@ -108,7 +113,7 @@
             // 
             this.panel7.Controls.Add(this.cbxDanhMuc);
             this.panel7.Controls.Add(this.label5);
-            this.panel7.Location = new System.Drawing.Point(6, 69);
+            this.panel7.Location = new System.Drawing.Point(6, 80);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(526, 60);
             this.panel7.TabIndex = 9;
@@ -136,7 +141,7 @@
             // 
             this.panel6.Controls.Add(this.txtGiaBan);
             this.panel6.Controls.Add(this.label2);
-            this.panel6.Location = new System.Drawing.Point(6, 285);
+            this.panel6.Location = new System.Drawing.Point(6, 374);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(526, 60);
             this.panel6.TabIndex = 8;
@@ -163,7 +168,7 @@
             // 
             this.panel5.Controls.Add(this.txtGiaNhap);
             this.panel5.Controls.Add(this.label1);
-            this.panel5.Location = new System.Drawing.Point(6, 219);
+            this.panel5.Location = new System.Drawing.Point(6, 296);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(523, 60);
             this.panel5.TabIndex = 7;
@@ -190,7 +195,7 @@
             // 
             this.panel4.Controls.Add(this.txtSoLuongNhap);
             this.panel4.Controls.Add(this.label4);
-            this.panel4.Location = new System.Drawing.Point(6, 153);
+            this.panel4.Location = new System.Drawing.Point(6, 221);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(526, 60);
             this.panel4.TabIndex = 6;
@@ -261,6 +266,34 @@
             this.panel2.Size = new System.Drawing.Size(712, 602);
             this.panel2.TabIndex = 1;
             // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.cbxNhaCungCap);
+            this.panel8.Controls.Add(this.label6);
+            this.panel8.Location = new System.Drawing.Point(6, 155);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(526, 60);
+            this.panel8.TabIndex = 13;
+            // 
+            // cbxNhaCungCap
+            // 
+            this.cbxNhaCungCap.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxNhaCungCap.FormattingEnabled = true;
+            this.cbxNhaCungCap.Location = new System.Drawing.Point(202, 18);
+            this.cbxNhaCungCap.Name = "cbxNhaCungCap";
+            this.cbxNhaCungCap.Size = new System.Drawing.Size(321, 24);
+            this.cbxNhaCungCap.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label6.Location = new System.Drawing.Point(3, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(122, 23);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Nhà cung cấp";
+            // 
             // FNhapHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -283,6 +316,8 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataNhapKho)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -310,5 +345,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataNhapKho;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.ComboBox cbxNhaCungCap;
+        private System.Windows.Forms.Label label6;
     }
 }
