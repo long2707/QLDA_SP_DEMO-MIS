@@ -46,10 +46,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtTImKiem = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataNhapKho)).BeginInit();
             this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -229,6 +229,17 @@
             this.panel2.Size = new System.Drawing.Size(712, 629);
             this.panel2.TabIndex = 3;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(3, 56);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(215, 19);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "(Tìm kiếm theo tên sản phẩm)";
+            // 
             // txtTImKiem
             // 
             this.txtTImKiem.Location = new System.Drawing.Point(3, 22);
@@ -236,6 +247,7 @@
             this.txtTImKiem.Name = "txtTImKiem";
             this.txtTImKiem.Size = new System.Drawing.Size(582, 31);
             this.txtTImKiem.TabIndex = 12;
+            this.txtTImKiem.TextChanged += new System.EventHandler(this.txtTImKiem_TextChanged);
             // 
             // panel6
             // 
@@ -260,17 +272,6 @@
             this.panel1.Size = new System.Drawing.Size(535, 629);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(3, 56);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(215, 19);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "(Tìm kiếm theo tên sản phẩm)";
             // 
             // FSanPham
             // 

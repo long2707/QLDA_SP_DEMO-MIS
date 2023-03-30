@@ -122,7 +122,7 @@ namespace Food_X
                 }
 
                 // kn.xuLy("EXEC NHAPKHOSANPHAM '" + maphieunhap + "', '" + cbxSP.SelectedValue + "', '"+cbxDanhMuc.SelectedValue+"', '"+cbxSP.SelectedText+"' ," + Convert.ToInt32(txtSoLuongNhap.Text) + ", " + Convert.ToDouble(txtGiaNhap.Text) + ", " + Convert.ToDouble(txtGiaBan.Text) + "");
-                kn.xuLy("  EXEC NHAPKHOSANPHAM @maphieu = '" + maphieunhap + "', @masp = '" + cbxSP.SelectedValue + "', @madm = " + cbxDanhMuc.SelectedValue + ", @tensp = '" + cbxSP.Text + "', @soluong = '" + Convert.ToInt32(txtSoLuongNhap.Text) + "', @gianhap = '" + Convert.ToDouble(txtGiaNhap.Text) + "', @giaban ='" + Convert.ToDouble(txtGiaBan.Text) + "'");
+                kn.xuLy("  EXEC NHAPKHOSANPHAM @maphieu = '" + maphieunhap + "', @masp = '" + cbxSP.SelectedValue + "', @madm = " + cbxDanhMuc.SelectedValue + ", @tensp = N'" + cbxSP.Text + "', @soluong = '" + Convert.ToInt32(txtSoLuongNhap.Text) + "', @gianhap = '" + Convert.ToDouble(txtGiaNhap.Text) + "', @giaban ='" + Convert.ToDouble(txtGiaBan.Text) + "'");
                 //  data.xuLy("INSERT INTO CHITIETHOADON(MaHD, MaSP, SoLuong, DonGia, ThanhTien) VALUES('"+maHD+"', '"+cbxSP.SelectedValue+"', "+numSolg.Value+", "+Convert.ToDouble(txtDonGia.Text)+", "+Convert.ToDouble(txtThanhTien.Text)+")");
                 LoadDataGridView();
                 cbxSP.Text = "";

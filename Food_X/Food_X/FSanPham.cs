@@ -78,6 +78,9 @@ namespace Food_X
             LoaddataView();
         }
 
-       
+        private void txtTImKiem_TextChanged(object sender, EventArgs e)
+        {
+            LoaddataView();
+        }
     }
 }

@@ -39,6 +39,24 @@ namespace Food_X
             numGiamGia.Value= 0;
             txtThanhTien.Text = "";
            txtDonGia.Text = "0";
+            if (dgBanHang.Rows.Count > 0)
+            {
+                button5.Enabled = true;
+                button4.Enabled = true;
+            }
+
+            else
+            {
+                button5.Enabled = false;
+                button4.Enabled = false;
+            }
+            if(dgBanHang.Rows.Count == 0)
+            {
+                lbTongTien.Text = "0";
+            }
+            btnThem.Enabled = true;
+            button1.Enabled = false;
+            button2.Enabled = false;
         }
         DataProvider data = new DataProvider();
         private void fBanHang_Load(object sender, EventArgs e)
@@ -54,7 +72,9 @@ namespace Food_X
             button2.Enabled= false;
             button5.Enabled= false;
             button4.Enabled= false;
+
             textNamKH.Enabled= false;
+       
            
         }
         
@@ -82,8 +102,8 @@ namespace Food_X
         private void LoadDataGridView()
         {
             string sql;
-            sql = "SELECT SANPHAM.MaSP, SANPHAM.TenSP, CHITIETHOADON.SoLuong, SANPHAM.GiaBan, CHITIETHOADON.ThanhTien ,HOADON.NgayLapHD FROM CHITIETHOADON LEFT JOIN HOADON ON CHITIETHOADON.MaHD= HOADON.MaHD" +
-                " LEFT JOIN SANPHAM ON CHITIETHOADON.MaSP = SANPHAM.MaSP WHERE  HOADON.MaHD= '"+maHD+"' ";
+            sql = "SELECT SANPHAM.MaSP, SANPHAM.TenSP, CHITIETHOADON.SoLuong, SANPHAM.GiaBan, CHITIETHOADON.ThanhTien ,HOADON.NgayLapHD FROM CHITIETHOADON INNER JOIN HOADON ON CHITIETHOADON.MaHD= HOADON.MaHD" +
+                " INNER JOIN SANPHAM ON CHITIETHOADON.MaSP = SANPHAM.MaSP WHERE  CONVERT(varchar(100), HOADON.MaHD) = '" + maHD+"' ";
             dgBanHang.DataSource = data.xuLy(sql);
 
             dgBanHang.Columns[0].Width = 100;
@@ -93,14 +113,15 @@ namespace Food_X
             dgBanHang.Columns[4].Width = 100;
             dgBanHang.Columns[5].Width = 100;
             dgBanHang.AllowUserToAddRows = false;
-            string sql2 = "SELECT SUM(CHITIETHOADON.ThanhTien) AS TongTien FROM CHITIETHOADON LEFT JOIN HOADON ON CHITIETHOADON.MaHD= HOADON.MaHD" +
-                " LEFT JOIN SANPHAM ON CHITIETHOADON.MaSP = SANPHAM.MaSP WHERE  HOADON.MaHD= '" + maHD + "' GROUP BY CHITIETHOADON.MaHD ";
+            string sql2 = "SELECT SUM(CHITIETHOADON.ThanhTien) AS TongTien FROM CHITIETHOADON INNER JOIN HOADON ON CHITIETHOADON.MaHD= HOADON.MaHD" +
+                " INNER JOIN SANPHAM ON CHITIETHOADON.MaSP = SANPHAM.MaSP WHERE CONVERT(varchar(100), HOADON.MaHD) = '" + maHD + "' GROUP BY CHITIETHOADON.MaHD ";
             DataTable dt = data.xuLy(sql2);
             if (dt.Rows.Count > 0)
             {
                 
-                lbTongTien.Text = String.Format("{ 0:0,0 vnđ}", dt.Rows[0]["TongTien"].ToString()); ;
+                lbTongTien.Text = dt.Rows[0]["TongTien"].ToString() ;
             }
+         
         }
 
         #endregion
@@ -120,7 +141,7 @@ namespace Food_X
         private void btnThem_Click(object sender, EventArgs e)
         {
             string sql = "SELECT MaHD FROM HOADON WHERE CONVERT(varchar(100), MaHD) = '" + maHD + "'";
-            try
+            //try
             {
                 if (Convert.ToInt32(txtSolg.Text) <= 0)
                 {
@@ -138,7 +159,18 @@ namespace Food_X
                     return;
                 }
 
-
+                DataTable table = data.xuLy("SELECT SoLuong FROM SANPHAM WHERE MaSP = '" + cbxSP.SelectedValue + "'");
+                int slg = Convert.ToInt32(table.Rows[0]["SoLuong"].ToString());
+                if (slg == 0)
+                {
+                    MessageBox.Show("Sản phẩm  đang tạm hết", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (slg < Convert.ToInt32(txtSolg.Text) )
+                {
+                    MessageBox.Show("Sản phẩm hiện tại chỉ còn "+slg+"", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 if (!Helper.CheckKey(sql))
                 {
@@ -153,10 +185,10 @@ namespace Food_X
                 LoadDataGridView();
                 resetHang();
             }
-            catch
-            {
-                MessageBox.Show("Hệ thống đang lỗi\nVui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //catch
+            //{
+            //    MessageBox.Show("Hệ thống đang lỗi\nVui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
 
         }

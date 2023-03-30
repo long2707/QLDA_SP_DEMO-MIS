@@ -268,7 +268,7 @@ namespace Food_X
                 MessageBox.Show("Số điện thoại chỉ được nhập số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            kn.xuLy("INSERT INTO NHACUNGCAP(TenNCC, Sdt, DiaChi) VALUES ('"+txtTenNCC.Text+"', '"+txtSDTNCC.Text+"', '"+txtDiaChiNCC.Text+"')");
+            kn.xuLy("INSERT INTO NHACUNGCAP(TenNCC, Sdt, DiaChi) VALUES (N'"+txtTenNCC.Text+"', '"+txtSDTNCC.Text+"', N'"+txtDiaChiNCC.Text+"')");
             txtDiaChiNCC.Text = "";
             txtSDTNCC.Text = "";
             txtTenNCC.Text = "";
@@ -304,12 +304,13 @@ namespace Food_X
                 MessageBox.Show("Số điện thoại chỉ được nhập số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            kn.xuLy("UPDATE NHACUNGCAP SET TenNCC= '"+txtTenNCC.Text+"', Sdt= '"+txtSDTNCC.Text+"', DiaChi= '"+txtDiaChiNCC.Text+"'");
+            kn.xuLy("UPDATE NHACUNGCAP SET TenNCC= N'"+txtTenNCC.Text+"', Sdt= '"+txtSDTNCC.Text+"', DiaChi= N'"+txtDiaChiNCC.Text+"' WHERE MaNCC = "+MaNCC+"");
             txtDiaChiNCC.Text = "";
             txtSDTNCC.Text = "";
             txtTenNCC.Text = "";
             btnXoaNCC.Enabled = false;
             LoadNCC();
+            btnThemNCC.Enabled = true;
             MessageBox.Show("Sửa thông tin nhà cung cấp thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void LoadNCC()
@@ -340,6 +341,7 @@ namespace Food_X
             txtSDTNCC.Text = Convert.ToString(dgKhachHang.Rows[i].Cells[2].Value).Trim();
             txtDiaChiNCC.Text = Convert.ToString(dgKhachHang.Rows[i].Cells[3].Value).Trim();
             btnThemNCC.Enabled = false;
+            btnXoaNCC.Enabled = true;
         }
     }
 }

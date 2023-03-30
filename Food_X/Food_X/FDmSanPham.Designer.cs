@@ -61,7 +61,7 @@
             this.dgDmSP.Name = "dgDmSP";
             this.dgDmSP.RowHeadersWidth = 51;
             this.dgDmSP.RowTemplate.Height = 24;
-            this.dgDmSP.Size = new System.Drawing.Size(278, 150);
+            this.dgDmSP.Size = new System.Drawing.Size(451, 150);
             this.dgDmSP.TabIndex = 2;
             this.dgDmSP.Click += new System.EventHandler(this.dgDmSP_Click);
             // 
@@ -106,7 +106,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Name = "FDmSanPham";
-            this.Size = new System.Drawing.Size(742, 431);
+            this.Size = new System.Drawing.Size(920, 478);
             this.Load += new System.EventHandler(this.FDmSanPham_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgDmSP)).EndInit();
             this.ResumeLayout(false);
