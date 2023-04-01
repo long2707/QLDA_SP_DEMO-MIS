@@ -25,12 +25,17 @@ namespace Food_X
             dataNhapKho.DataSource = kn.xuLy("EXEC GETSANPHAM N'"+txtTImKiem.Text+"'");
             dataNhapKho.AllowUserToAddRows = false;
             btnSua.Enabled = false;
-            btnXoa.Enabled = false;
+           // btnXoa.Enabled = false;
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
             kn.xuLy("UPDATE SANPHAM SET SoLuong= " + Convert.ToInt32(txtSoLuongNhap.Text) + ", GiaBan=" + Convert.ToDecimal(txtGiaBan.Text) + ", GiaNhap=" + Convert.ToDecimal(txtGiaNhap.Text) + " WHERE  MaSP= '"+MaSanPham+"'");
-             MessageBox.Show("Sửa sản phẩm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            cbxSP.Text = "";
+            cbxDanhMuc.Text = "";
+            txtGiaBan.Text = "";
+            txtGiaNhap.Text = "";
+            txtSoLuongNhap.Text = "";
+            MessageBox.Show("Sửa sản phẩm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoaddataView();
         }
 
@@ -68,7 +73,7 @@ namespace Food_X
             cbxSP.Enabled = false;
             cbxDanhMuc.Enabled = false;
             btnSua.Enabled = true;
-            btnXoa.Enabled = true;
+            //btnXoa.Enabled = true;
            
             
         }

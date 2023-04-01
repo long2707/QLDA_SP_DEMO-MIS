@@ -45,6 +45,8 @@ namespace Food_X
         private void LoadDataView()
         {
             dgDmSP.DataSource = kn.xuLy("SELECT*FROM DANHMUC");
+            dgDmSP.Columns[0].Width = 150;
+            dgDmSP.Columns[1].Width = 500;
             dgDmSP.AllowUserToAddRows = false;
         }
 

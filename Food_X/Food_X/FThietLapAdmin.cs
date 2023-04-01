@@ -187,7 +187,7 @@ namespace Food_X
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(maNV !="36E7062C-3A63-4A3A-8253-A2A36A67EA4D")
+            if(maNV =="36E7062C-3A63-4A3A-8253-A2A36A67EA4D")
             {
                 MessageBox.Show("Bạn không được xóa nhân viên này", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -196,6 +196,9 @@ namespace Food_X
             LoadNhanVien();
             restTextNhanVien();
             MessageBox.Show("xóa nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            button1.Enabled = true;
+            button2.Enabled = false;
+            button3.Enabled = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -239,6 +242,9 @@ namespace Food_X
             restTextNhanVien();
             LoadNhanVien();
             MessageBox.Show("Sửa thông tin nhân viên thành công thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            button1.Enabled = true;
+            button2.Enabled = false;
+            button3.Enabled = false;
         }
 
         private void btnThemNCC_Click(object sender, EventArgs e)
@@ -336,7 +342,7 @@ namespace Food_X
         {
             int i = dgKhachHang.CurrentRow.Index;
             // cbxSP.SelectedValue= dgBanHang.Rows[i].Cells[0].Value.ToString();
-            MaNCC = Convert.ToInt32(dgKhachHang.Rows[i].Cells[0].Value);
+            maNV = Convert.ToString(dgKhachHang.Rows[i].Cells[0].Value);
             txtTenNCC.Text = dgKhachHang.Rows[i].Cells[1].Value.ToString();
             txtSDTNCC.Text = Convert.ToString(dgKhachHang.Rows[i].Cells[2].Value).Trim();
             txtDiaChiNCC.Text = Convert.ToString(dgKhachHang.Rows[i].Cells[3].Value).Trim();

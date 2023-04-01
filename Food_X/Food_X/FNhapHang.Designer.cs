@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.cbxNhaCungCap = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
@@ -49,10 +52,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dataNhapKho = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.cbxNhaCungCap = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.btnXuatPhieu = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -60,11 +62,11 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataNhapKho)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnXuatPhieu);
             this.panel1.Controls.Add(this.panel8);
             this.panel1.Controls.Add(this.btnXoa);
             this.panel1.Controls.Add(this.btnSua);
@@ -78,6 +80,34 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(535, 602);
             this.panel1.TabIndex = 0;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.cbxNhaCungCap);
+            this.panel8.Controls.Add(this.label6);
+            this.panel8.Location = new System.Drawing.Point(6, 155);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(526, 60);
+            this.panel8.TabIndex = 13;
+            // 
+            // cbxNhaCungCap
+            // 
+            this.cbxNhaCungCap.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxNhaCungCap.FormattingEnabled = true;
+            this.cbxNhaCungCap.Location = new System.Drawing.Point(196, 18);
+            this.cbxNhaCungCap.Name = "cbxNhaCungCap";
+            this.cbxNhaCungCap.Size = new System.Drawing.Size(327, 24);
+            this.cbxNhaCungCap.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label6.Location = new System.Drawing.Point(3, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(122, 23);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Nhà cung cấp";
             // 
             // btnXoa
             // 
@@ -122,9 +152,9 @@
             // 
             this.cbxDanhMuc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxDanhMuc.FormattingEnabled = true;
-            this.cbxDanhMuc.Location = new System.Drawing.Point(202, 18);
+            this.cbxDanhMuc.Location = new System.Drawing.Point(196, 18);
             this.cbxDanhMuc.Name = "cbxDanhMuc";
-            this.cbxDanhMuc.Size = new System.Drawing.Size(321, 24);
+            this.cbxDanhMuc.Size = new System.Drawing.Size(327, 24);
             this.cbxDanhMuc.TabIndex = 2;
             // 
             // label5
@@ -202,10 +232,10 @@
             // 
             // txtSoLuongNhap
             // 
-            this.txtSoLuongNhap.Location = new System.Drawing.Point(199, 11);
+            this.txtSoLuongNhap.Location = new System.Drawing.Point(196, 11);
             this.txtSoLuongNhap.Multiline = true;
             this.txtSoLuongNhap.Name = "txtSoLuongNhap";
-            this.txtSoLuongNhap.Size = new System.Drawing.Size(324, 31);
+            this.txtSoLuongNhap.Size = new System.Drawing.Size(327, 31);
             this.txtSoLuongNhap.TabIndex = 2;
             // 
             // label4
@@ -232,9 +262,9 @@
             this.cbxSP.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxSP.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxSP.FormattingEnabled = true;
-            this.cbxSP.Location = new System.Drawing.Point(202, 21);
+            this.cbxSP.Location = new System.Drawing.Point(196, 21);
             this.cbxSP.Name = "cbxSP";
-            this.cbxSP.Size = new System.Drawing.Size(324, 24);
+            this.cbxSP.Size = new System.Drawing.Size(330, 24);
             this.cbxSP.TabIndex = 2;
             // 
             // label3
@@ -266,33 +296,18 @@
             this.panel2.Size = new System.Drawing.Size(712, 602);
             this.panel2.TabIndex = 1;
             // 
-            // panel8
+            // btnXuatPhieu
             // 
-            this.panel8.Controls.Add(this.cbxNhaCungCap);
-            this.panel8.Controls.Add(this.label6);
-            this.panel8.Location = new System.Drawing.Point(6, 155);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(526, 60);
-            this.panel8.TabIndex = 13;
-            // 
-            // cbxNhaCungCap
-            // 
-            this.cbxNhaCungCap.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbxNhaCungCap.FormattingEnabled = true;
-            this.cbxNhaCungCap.Location = new System.Drawing.Point(202, 18);
-            this.cbxNhaCungCap.Name = "cbxNhaCungCap";
-            this.cbxNhaCungCap.Size = new System.Drawing.Size(321, 24);
-            this.cbxNhaCungCap.TabIndex = 2;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label6.Location = new System.Drawing.Point(3, 19);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(122, 23);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Nhà cung cấp";
+            this.btnXuatPhieu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnXuatPhieu.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXuatPhieu.ForeColor = System.Drawing.Color.Black;
+            this.btnXuatPhieu.Location = new System.Drawing.Point(6, 538);
+            this.btnXuatPhieu.Name = "btnXuatPhieu";
+            this.btnXuatPhieu.Size = new System.Drawing.Size(526, 61);
+            this.btnXuatPhieu.TabIndex = 11;
+            this.btnXuatPhieu.Text = "Xuất phiếu nhập kho";
+            this.btnXuatPhieu.UseVisualStyleBackColor = false;
+            this.btnXuatPhieu.Click += new System.EventHandler(this.btnXuatPhieu_Click);
             // 
             // FNhapHang
             // 
@@ -304,6 +319,8 @@
             this.Size = new System.Drawing.Size(1260, 609);
             this.Load += new System.EventHandler(this.FNhapHang_Load);
             this.panel1.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -316,8 +333,6 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataNhapKho)).EndInit();
             this.panel2.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -348,5 +363,6 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.ComboBox cbxNhaCungCap;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnXuatPhieu;
     }
 }

@@ -10,7 +10,8 @@ namespace Food_X.DTO
 {
     internal class DataProvider
     {
-        private string connections = "Data Source=DESKTOP-JAVVLQ7;Initial Catalog=QLDA_DATA;Persist Security Info=True;User ID=sa;Password=long270701";
+	//connect sql 
+        private string connections = "";
         SqlConnection connection;
 
         DataTable dtTable;

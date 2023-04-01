@@ -142,9 +142,9 @@
             this.panel2.Controls.Add(this.labSanPham);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Location = new System.Drawing.Point(431, 3);
+            this.panel2.Location = new System.Drawing.Point(417, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(385, 183);
+            this.panel2.Size = new System.Drawing.Size(399, 183);
             this.panel2.TabIndex = 1;
             // 
             // labSpNow
@@ -209,9 +209,9 @@
             this.panel3.Controls.Add(this.labelDT);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.pictureBox3);
-            this.panel3.Location = new System.Drawing.Point(840, 3);
+            this.panel3.Location = new System.Drawing.Point(822, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(415, 183);
+            this.panel3.Size = new System.Drawing.Size(433, 183);
             this.panel3.TabIndex = 2;
             // 
             // labDoanhThuNow

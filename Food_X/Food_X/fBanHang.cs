@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Food_X
 {
@@ -303,6 +304,7 @@ namespace Food_X
                 MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadDataGridView();
                 resetHang();
+                maHD = "";
                 button1.Enabled = false;
                 button2.Enabled = false;
                 button5.Enabled = false;
@@ -312,9 +314,67 @@ namespace Food_X
 
         private void button4_Click(object sender, EventArgs e)
         {
+            LoadDataGridView();
+            Excel.Application exApp = new Excel.Application();
+            Excel.Workbook excelWorkbook = exApp.Workbooks.Add(Excel.XlWBATemplate.xlWBATWorksheet);
+            Excel.Worksheet worksheet = (Excel.Worksheet)excelWorkbook.Worksheets[1];
+            Excel.Range exRange = (Excel.Range)worksheet.Cells[1, 1];
+   
+            worksheet.Range["d3"].Font.Size = 14;
+
+            worksheet.Range["d3"].Font.Bold = true;
+            worksheet.Range["d3"].Font.Color = Color.Red;
+            worksheet.Range["d3"].Value = "FOOD-X";
+
+            worksheet.Range["d4"].Font.Size = 14;
+
+            worksheet.Range["d4"].Font.Bold = true;
+            worksheet.Range["d4"].Font.Color = Color.Red;
+            worksheet.Range["d4"].Value = "HÓA ĐƠN BÁN";
+
+            // in thong tin chung
+
+            worksheet.Range["A5:A6"].Font.Size = 12;
+            worksheet.Range["A5"].Value = "Khách hàng: " + textNamKH.Text;
+            worksheet.Range["A6"].Value = "Số điện thoại: " + textSDT.Text;
+
+            //in tieu đề
+
+            worksheet.Range["A8: G10"].Font.Size = 12;
+            worksheet.Range["A10:F10"].Font.Bold = true;
+            worksheet.Range["A10"].Value = "STT";
+            worksheet.Range["B10"].Value = "Tên sản phẩm";
+            worksheet.Range["C10"].Value = "Số lượng";
+            worksheet.Range["D10"].Value = "Đơn giá";
+            worksheet.Range["E10"].Value = "Thành tiền";
+            string s= dgBanHang.Rows[0].Cells[1].Value.ToString();
+            int dong = 11;
+            for(int i = 0; i<= dgBanHang.Rows.Count-1 ; i++)
+            {
+                worksheet.Range["A"+(dong+i).ToString()].Value= (i+1).ToString();
+                worksheet.Range["B"+(dong+i).ToString()].Value = dgBanHang.Rows[i].Cells[1].Value.ToString();
+                worksheet.Range["C" + (dong + i).ToString()].Value = dgBanHang.Rows[i].Cells[2].Value.ToString();
+                worksheet.Range["D" + (dong + i).ToString()].Value = dgBanHang.Rows[i].Cells[3].Value.ToString();
+                worksheet.Range["E" + (dong + i).ToString()].Value = dgBanHang.Rows[i].Cells[4].Value.ToString();
+
+            }
+            dong = dong + dgBanHang.Rows.Count+ 1;
+            worksheet.Range["E" + dong.ToString()].Value = lbTongTien.Text + "đồng";
+            excelWorkbook.Activate();
+             //luu file
+
+            SaveFileDialog save = new SaveFileDialog();
+            if(save.ShowDialog() == DialogResult.OK)
+            {
+                excelWorkbook.SaveAs(save.FileName.ToLower());
+            }
+            exApp.Quit();
+
+
             textNamKH.Text = "";
             textSDT.Text = "";
             resetHang();
+            maHD = "";
             dgBanHang.DataSource = null;
             lbTongTien.Text = "0";
             MessageBox.Show("Xuất hóa đơn thành công", "Thông báp", MessageBoxButtons.OK, MessageBoxIcon.Information );

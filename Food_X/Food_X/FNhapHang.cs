@@ -8,7 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using Excel = Microsoft.Office.Interop.Excel;
 namespace Food_X
 {
     public partial class FNhapHang : UserControl
@@ -26,10 +27,8 @@ namespace Food_X
         private void FNhapHang_Load(object sender, EventArgs e)
         {
             resetHang();
-           // load data san pham
-            cbxSP.DataSource = kn.xuLy("SELECT MaSP,TenSP FROM SANPHAM");
-            cbxSP.ValueMember = "MaSP";
-            cbxSP.DisplayMember = "TenSP";
+            // load data san pham
+            loadSanPham();
 
             // load data nha cung cap
             cbxNhaCungCap.DataSource = kn.xuLy("SELECT MaNCC,TenNCC FROM NHACUNGCAP");
@@ -41,6 +40,12 @@ namespace Food_X
             cbxDanhMuc.DisplayMember = "TenDM";
             resetHang();
         }
+        private void loadSanPham()
+        {
+            cbxSP.DataSource = kn.xuLy("SELECT MaSP,TenSP FROM SANPHAM");
+            cbxSP.ValueMember = "MaSP";
+            cbxSP.DisplayMember = "TenSP";
+        }
         private void resetHang()
         {
             cbxSP.Text = "";
@@ -50,7 +55,7 @@ namespace Food_X
             txtGiaNhap.Text = "";
             txtGiaBan.Text = "";
             maNCC = 0;
-            maphieunhap = "";
+          
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
         }
@@ -125,6 +130,7 @@ namespace Food_X
                 kn.xuLy("  EXEC NHAPKHOSANPHAM @maphieu = '" + maphieunhap + "', @masp = '" + cbxSP.SelectedValue + "', @madm = " + cbxDanhMuc.SelectedValue + ", @tensp = N'" + cbxSP.Text + "', @soluong = '" + Convert.ToInt32(txtSoLuongNhap.Text) + "', @gianhap = '" + Convert.ToDouble(txtGiaNhap.Text) + "', @giaban ='" + Convert.ToDouble(txtGiaBan.Text) + "'");
                 //  data.xuLy("INSERT INTO CHITIETHOADON(MaHD, MaSP, SoLuong, DonGia, ThanhTien) VALUES('"+maHD+"', '"+cbxSP.SelectedValue+"', "+numSolg.Value+", "+Convert.ToDouble(txtDonGia.Text)+", "+Convert.ToDouble(txtThanhTien.Text)+")");
                 LoadDataGridView();
+                loadSanPham();
                 cbxSP.Text = "";
                 cbxNhaCungCap.Text = "";
                 cbxDanhMuc.Text = "";
@@ -148,7 +154,6 @@ namespace Food_X
             if (s != (int)cbxNhaCungCap.SelectedValue)
             {
                 MessageBox.Show("Nhà cung cấp khác với nhà cung cấp bạn vừa chọn\nVui lòng xóa phiếu nhập kho này", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                resetHang();
                 return;
             }
             kn.xuLy("EXEC UPDATENHAPKHO '" + maphieunhap + "', '" + cbxSP.SelectedValue + "', '" + cbxDanhMuc.SelectedValue + "' ,'" + cbxSP.Text + "', " + Convert.ToInt32(txtSoLuongNhap.Text) + ", " + Convert.ToDecimal(txtGiaNhap.Text) + ", " + Convert.ToDecimal(txtGiaBan.Text) + "");
@@ -162,6 +167,7 @@ namespace Food_X
 
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
+            btnThem.Enabled = true;
             MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadDataGridView();
         }
@@ -197,6 +203,64 @@ namespace Food_X
             btnXoa.Enabled = true;
             btnThem.Enabled = false;
             
+        }
+
+        private void btnXuatPhieu_Click(object sender, EventArgs e)
+        {
+            Excel.Application exApp = new Excel.Application();
+            Excel.Workbook excelWorkbook = exApp.Workbooks.Add(Excel.XlWBATemplate.xlWBATWorksheet);
+            Excel.Worksheet worksheet = (Excel.Worksheet)excelWorkbook.Worksheets[1];
+            Excel.Range exRange = (Excel.Range)worksheet.Cells[1, 1];
+
+            worksheet.Range["d3"].Font.Size = 14;
+
+            worksheet.Range["d3"].Font.Bold = true;
+            worksheet.Range["d3"].Font.Color = Color.Red;
+            worksheet.Range["d3"].Value = "FOOD-X";
+
+            worksheet.Range["d4"].Font.Size = 14;
+
+            worksheet.Range["d4"].Font.Bold = true;
+            worksheet.Range["d4"].Font.Color = Color.Red;
+            worksheet.Range["d4"].Value = "HÓA ĐƠN NHẬP";
+
+            // in thong tin chung
+
+
+            //in tieu đề
+
+            worksheet.Range["A8: G10"].Font.Size = 12;
+            worksheet.Range["A10:F10"].Font.Bold = true;
+            worksheet.Range["A10"].Value = "STT";
+            worksheet.Range["B10"].Value = "Tên sản phẩm";
+            worksheet.Range["C10"].Value = "Số lượng";
+            worksheet.Range["D10"].Value = "Đơn giá";
+            worksheet.Range["E10"].Value = "Thành tiền";
+            string s = dataNhapKho.Rows[0].Cells[1].Value.ToString();
+            int dong = 11;
+            for (int i = 0; i <= dataNhapKho.Rows.Count - 1; i++)
+            {
+                worksheet.Range["A" + (dong + i).ToString()].Value = (i + 1).ToString();
+                worksheet.Range["B" + (dong + i).ToString()].Value = dataNhapKho.Rows[i].Cells[1].Value.ToString();
+                worksheet.Range["C" + (dong + i).ToString()].Value = dataNhapKho.Rows[i].Cells[2].Value.ToString();
+                worksheet.Range["D" + (dong + i).ToString()].Value = dataNhapKho.Rows[i].Cells[3].Value.ToString();
+                worksheet.Range["E" + (dong + i).ToString()].Value = dataNhapKho.Rows[i].Cells[4].Value.ToString();
+
+            }
+            dong = dong + dataNhapKho.Rows.Count + 1;
+           
+            excelWorkbook.Activate();
+            //luu file
+
+            SaveFileDialog save = new SaveFileDialog();
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                excelWorkbook.SaveAs(save.FileName.ToLower());
+            }
+            exApp.Quit();
+            MessageBox.Show("Xuất hóa đơn nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            resetHang();
+            maphieunhap = "";
         }
     }
 }

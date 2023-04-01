@@ -86,7 +86,7 @@ namespace Food_X
 
         private void btnNhapHang_Click(object sender, EventArgs e)
         {
-            lbViewbtn.Text = btnBanHang.Text;
+            lbViewbtn.Text = btnNhapHang.Text;
             FNhapHang nhapHang = new FNhapHang(MaNv);
             panelShow.Controls.Clear();
             panelShow.Controls.Add(nhapHang);
@@ -138,6 +138,11 @@ namespace Food_X
                 panelShow.Controls.Clear();
                 panelShow.Controls.Add(fThietLap);
             }
+        }
+
+        private void panelShow_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

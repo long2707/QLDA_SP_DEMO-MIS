@@ -64,9 +64,9 @@
             // 
             this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnExit.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnExit.Location = new System.Drawing.Point(146, 333);
+            this.btnExit.Location = new System.Drawing.Point(111, 354);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(101, 46);
+            this.btnExit.Size = new System.Drawing.Size(136, 46);
             this.btnExit.TabIndex = 4;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = false;
@@ -76,7 +76,7 @@
             // 
             this.btnDangNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnDangNhap.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDangNhap.Location = new System.Drawing.Point(260, 333);
+            this.btnDangNhap.Location = new System.Drawing.Point(260, 354);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(135, 46);
             this.btnDangNhap.TabIndex = 3;
@@ -88,7 +88,7 @@
             // 
             this.panel3.Controls.Add(this.textPassword);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Location = new System.Drawing.Point(4, 243);
+            this.panel3.Location = new System.Drawing.Point(4, 273);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(394, 71);
             this.panel3.TabIndex = 2;
@@ -121,7 +121,7 @@
             // 
             this.panel2.Controls.Add(this.textUser);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(4, 166);
+            this.panel2.Location = new System.Drawing.Point(4, 196);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(394, 71);
             this.panel2.TabIndex = 1;
@@ -148,9 +148,11 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(106, 28);
+            this.pictureBox1.Image = global::Food_X.Properties.Resources.Food_x_removebg_preview;
+            this.pictureBox1.Location = new System.Drawing.Point(123, 6);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(170, 109);
+            this.pictureBox1.Size = new System.Drawing.Size(164, 170);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 

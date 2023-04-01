@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnXoa = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.dataNhapKho = new System.Windows.Forms.DataGridView();
             this.cbxDanhMuc = new System.Windows.Forms.ComboBox();
@@ -60,24 +59,16 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnXoa
-            // 
-            this.btnXoa.Location = new System.Drawing.Point(275, 377);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(251, 47);
-            this.btnXoa.TabIndex = 12;
-            this.btnXoa.Text = "Xóa";
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
-            // 
             // btnSua
             // 
+            this.btnSua.BackColor = System.Drawing.Color.BlanchedAlmond;
+            this.btnSua.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnSua.Location = new System.Drawing.Point(13, 377);
             this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(229, 47);
+            this.btnSua.Size = new System.Drawing.Size(513, 47);
             this.btnSua.TabIndex = 11;
             this.btnSua.Text = "Sửa";
-            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // dataNhapKho
@@ -121,6 +112,7 @@
             // 
             // txtGiaBan
             // 
+            this.txtGiaBan.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtGiaBan.Location = new System.Drawing.Point(196, 11);
             this.txtGiaBan.Multiline = true;
             this.txtGiaBan.Name = "txtGiaBan";
@@ -149,6 +141,7 @@
             // 
             // txtGiaNhap
             // 
+            this.txtGiaNhap.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtGiaNhap.Location = new System.Drawing.Point(196, 11);
             this.txtGiaNhap.Multiline = true;
             this.txtGiaNhap.Name = "txtGiaNhap";
@@ -166,6 +159,7 @@
             // 
             // txtSoLuongNhap
             // 
+            this.txtSoLuongNhap.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtSoLuongNhap.Location = new System.Drawing.Point(199, 11);
             this.txtSoLuongNhap.Multiline = true;
             this.txtSoLuongNhap.Name = "txtSoLuongNhap";
@@ -221,6 +215,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.txtTImKiem);
             this.panel2.Controls.Add(this.dataNhapKho);
@@ -260,7 +255,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnXoa);
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.btnSua);
             this.panel1.Controls.Add(this.panel7);
             this.panel1.Controls.Add(this.panel6);
@@ -301,7 +296,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.DataGridView dataNhapKho;
         private System.Windows.Forms.ComboBox cbxDanhMuc;

@@ -50,7 +50,6 @@
             this.txtTenNv = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dgKhachHang = new System.Windows.Forms.DataGridView();
             this.btnXoaNCC = new System.Windows.Forms.Button();
             this.btnThemNCC = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -62,6 +61,7 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.txtTenNCC = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.dgKhachHang = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -71,10 +71,10 @@
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgKhachHang)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgKhachHang)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -111,17 +111,17 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1023, 279);
+            this.button3.Location = new System.Drawing.Point(860, 279);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(219, 38);
+            this.button3.Size = new System.Drawing.Size(223, 38);
             this.button3.TabIndex = 12;
-            this.button3.Text = "SỬA THÔNG TIIN NHÂN VIÊN";
+            this.button3.Text = "SỬA THÔNG TIN NHÂN VIÊN";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(860, 279);
+            this.button2.Location = new System.Drawing.Point(1089, 279);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(157, 38);
             this.button2.TabIndex = 11;
@@ -240,9 +240,9 @@
             // 
             // txtSdt
             // 
-            this.txtSdt.Location = new System.Drawing.Point(135, 8);
+            this.txtSdt.Location = new System.Drawing.Point(134, 8);
             this.txtSdt.Name = "txtSdt";
-            this.txtSdt.Size = new System.Drawing.Size(448, 22);
+            this.txtSdt.Size = new System.Drawing.Size(449, 22);
             this.txtSdt.TabIndex = 2;
             // 
             // label5
@@ -266,9 +266,9 @@
             // 
             // txtTenNv
             // 
-            this.txtTenNv.Location = new System.Drawing.Point(135, 10);
+            this.txtTenNv.Location = new System.Drawing.Point(134, 10);
             this.txtTenNv.Name = "txtTenNv";
-            this.txtTenNv.Size = new System.Drawing.Size(448, 22);
+            this.txtTenNv.Size = new System.Drawing.Size(449, 22);
             this.txtTenNv.TabIndex = 1;
             // 
             // label6
@@ -297,18 +297,6 @@
             this.tabPage2.Text = "Quản lý nhà cung cấp";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
-            // 
-            // dgKhachHang
-            // 
-            this.dgKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgKhachHang.Location = new System.Drawing.Point(7, 6);
-            this.dgKhachHang.Name = "dgKhachHang";
-            this.dgKhachHang.RowHeadersWidth = 51;
-            this.dgKhachHang.RowTemplate.Height = 24;
-            this.dgKhachHang.Size = new System.Drawing.Size(662, 596);
-            this.dgKhachHang.TabIndex = 0;
-            this.dgKhachHang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgKhachHang_CellContentClick);
-            this.dgKhachHang.Click += new System.EventHandler(this.dgKhachHang_Click);
             // 
             // btnXoaNCC
             // 
@@ -408,6 +396,18 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Tên nhà cung cấp";
             // 
+            // dgKhachHang
+            // 
+            this.dgKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgKhachHang.Location = new System.Drawing.Point(7, 6);
+            this.dgKhachHang.Name = "dgKhachHang";
+            this.dgKhachHang.RowHeadersWidth = 51;
+            this.dgKhachHang.RowTemplate.Height = 24;
+            this.dgKhachHang.Size = new System.Drawing.Size(662, 596);
+            this.dgKhachHang.TabIndex = 0;
+            this.dgKhachHang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgKhachHang_CellContentClick);
+            this.dgKhachHang.Click += new System.EventHandler(this.dgKhachHang_Click);
+            // 
             // FThietLapAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -430,13 +430,13 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgKhachHang)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgKhachHang)).EndInit();
             this.ResumeLayout(false);
 
         }
